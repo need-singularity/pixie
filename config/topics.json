@@ -1,0 +1,38 @@
+{
+  "_schema": "pixie.topics.v1",
+  "_doc": "SSOT for channel topics. pixie topic-sync reads this; hand-edits in Discord are overwritten on next sync. Channel IDs come from secret://discord.pixie_channels_json.",
+  "channels": {
+    "🔥-campfire": {
+      "topic": "🔥 일 떠난 일상 — 커피, 식사, 게임, 뭐든.\nno agenda · no rules · 그냥 오고 싶을 때 와서 앉기.",
+      "project": null
+    },
+    "nexus": {
+      "topic": "🔭 NEXUS — Universal Discovery Engine\n216 lenses + OUROBOROS evolution + 5-phase singularity cycle\n→ github.com/need-singularity/nexus",
+      "project": "nexus"
+    },
+    "anima": {
+      "topic": "🧠 Anima — Consciousness implementation\nPureField repulsion-field engine + 1030 laws + Φ ratchet\n→ github.com/need-singularity/anima",
+      "project": "anima"
+    },
+    "n6-architecture": {
+      "topic": "🏗️ N6 — Architecture from perfect number 6\n225 AI techniques + chip design + crypto / OS / display\n→ github.com/need-singularity/n6-architecture",
+      "project": "n6-architecture"
+    },
+    "hexa-lang": {
+      "topic": "💎 HEXA-LANG — The Perfect Number Programming Language\nworking compiler + REPL\n→ github.com/need-singularity/hexa-lang",
+      "project": "hexa-lang"
+    },
+    "hive": {
+      "topic": "🐝 Hive — pi-mono fork\nAI-agent swarm: multi-cell parallel agents, layered persistent memory, need-singularity bridges\n→ github.com/need-singularity/hive",
+      "project": "hive"
+    },
+    "void": {
+      "topic": "🕳️ Void — Ghostty fork\nAI-native terminal: grid mode (N×M auto-layout), agent I/O alongside PTY, perf-first budget\n→ github.com/need-singularity/void",
+      "project": "void"
+    },
+    "airgenome": {
+      "topic": "🧬 airgenome — OS genome scanner\n6-axis hexagon projection of host vitals + pattern accumulation + anomaly detection\n→ github.com/need-singularity/airgenome",
+      "project": "airgenome"
+    }
+  }
+}

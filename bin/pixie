@@ -1,0 +1,190 @@
+#!/usr/bin/env python3
+"""
+pixie — channel secretary for need-singularity Discord.
+
+Subcommands:
+  channels         — list server channels + current topics
+  topic-sync       — apply config/topics.json to Discord (use --dry-run to preview)
+  welcome <uid>    — send onboarding DM to a user
+  apply-full       — one-shot bootstrap (rename, create voice, set topics)
+  version          — print version
+
+Credentials read from the `secret` project (need-singularity/secret):
+  discord.pixie_bot_token
+  discord.pixie_guild_id
+  discord.pixie_channels_json
+"""
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+
+VERSION = "0.1.0"
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SECRET = os.path.expanduser("~/core/secret/bin/secret")
+
+
+def secret_get(key: str) -> str:
+    r = subprocess.run([SECRET, "get", key], capture_output=True, text=True)
+    if r.returncode != 0:
+        die(f"secret get {key} failed: {r.stderr.strip()}")
+    return r.stdout.strip()
+
+
+def die(msg: str, code: int = 1) -> None:
+    print(f"pixie: {msg}", file=sys.stderr)
+    sys.exit(code)
+
+
+def api(method: str, path: str, body=None):
+    token = secret_get("discord.pixie_bot_token")
+    url = f"https://discord.com/api/v10{path}"
+    cmd = [
+        "curl", "-s", "-X", method,
+        "-H", f"Authorization: Bot {token}",
+        "-H", "Content-Type: application/json",
+    ]
+    if body is not None:
+        cmd += ["-d", json.dumps(body, ensure_ascii=False)]
+    cmd.append(url)
+    r = subprocess.run(cmd, capture_output=True, text=True)
+    if not r.stdout.strip():
+        return {}
+    try:
+        return json.loads(r.stdout)
+    except json.JSONDecodeError:
+        die(f"{method} {path} returned non-JSON: {r.stdout[:200]}")
+
+
+def load_channel_map() -> dict:
+    raw = secret_get("discord.pixie_channels_json")
+    if not raw:
+        die("discord.pixie_channels_json is empty — run `pixie channels --save` after inviting the bot")
+    return json.loads(raw)
+
+
+def load_topics() -> dict:
+    return json.loads((REPO_ROOT / "config" / "topics.json").read_text())
+
+
+# ─── subcommands ───────────────────────────────────────────────────────────
+
+def cmd_channels(args) -> int:
+    gid = secret_get("discord.pixie_guild_id")
+    chans = api("GET", f"/guilds/{gid}/channels")
+    TYPES = {0: "text", 2: "voice", 4: "category", 5: "news", 13: "stage", 15: "forum"}
+    cats = {c["id"]: c for c in chans if c.get("type") == 4}
+    rest = [c for c in chans if c.get("type") != 4]
+    for cat_id, cat in sorted(cats.items(), key=lambda kv: kv[1].get("position", 0)):
+        print(f"▼ {cat['name']}   (cat_id={cat_id})")
+        for c in sorted([x for x in rest if x.get("parent_id") == cat_id], key=lambda x: x.get("position", 0)):
+            t = TYPES.get(c.get("type"), c.get("type"))
+            topic = (c.get("topic") or "").replace("\n", " ")[:70]
+            tag = "  " if topic else "⚠️"
+            print(f"  {tag} [{t}] id={c['id']} #{c['name']}")
+            if topic:
+                print(f"        {topic}")
+    return 0
+
+
+def cmd_topic_sync(args) -> int:
+    dry = "--dry-run" in args
+    chmap = load_channel_map()["channels"]
+    topics = load_topics()["channels"]
+    changed = 0
+    unchanged = 0
+    missing = 0
+    for ch_name, spec in topics.items():
+        cid = chmap.get(ch_name)
+        if not cid:
+            print(f"  ? {ch_name}: channel not in map, skipped")
+            missing += 1
+            continue
+        want = spec["topic"]
+        current = api("GET", f"/channels/{cid}").get("topic") or ""
+        if current == want:
+            print(f"  = {ch_name}: unchanged")
+            unchanged += 1
+            continue
+        if dry:
+            print(f"  ~ {ch_name}: WOULD update ({len(want)} chars)")
+        else:
+            r = api("PATCH", f"/channels/{cid}", {"topic": want})
+            if r.get("message"):
+                print(f"  ✗ {ch_name}: {r['message']}")
+            else:
+                print(f"  ✓ {ch_name}: updated")
+        changed += 1
+    print(f"\nsummary: changed={changed} unchanged={unchanged} missing={missing}  mode={'dry-run' if dry else 'apply'}")
+    return 0
+
+
+def cmd_welcome(args) -> int:
+    if not args:
+        die("usage: pixie welcome <user_id>")
+    uid = args[0]
+    dm = api("POST", "/users/@me/channels", {"recipient_id": uid})
+    cid = dm.get("id")
+    if not cid:
+        die(f"could not open DM with {uid}: {dm}")
+    body = {
+        "content": (
+            "✨ Hello! I'm Pixie, the channel secretary for **need-singularity**.\n\n"
+            "Quick tour:\n"
+            "• 🔥 **campfire** — off-topic daily life, no rules\n"
+            "• Per-project channels: `#nexus`, `#anima`, `#n6-architecture`, "
+            "`#hexa-lang`, `#hive`, `#void`, `#airgenome` — each linked to its GitHub repo in the topic\n"
+            "• 🤝 **huddle** voice — for focused work\n\n"
+            "I'm not autonomous — hand-run. Any serious AI interaction will come later via Anima 🧠.\n\n"
+            "— Pixie ✨"
+        )
+    }
+    r = api("POST", f"/channels/{cid}/messages", body)
+    if r.get("id"):
+        print(f"  ✓ welcome DM sent to {uid}")
+        return 0
+    print(f"  ✗ send failed: {r}")
+    return 1
+
+
+def cmd_apply_full(args) -> int:
+    """One-shot bootstrap used 2026-04-24.  Safe to re-run (PATCH idempotent)."""
+    # Delegates to topic-sync; voice/rename ops already done and idempotent enough.
+    print("pixie apply-full: delegating to topic-sync")
+    return cmd_topic_sync(args)
+
+
+def cmd_version(args) -> int:
+    print(f"pixie {VERSION}")
+    return 0
+
+
+# ─── dispatcher ────────────────────────────────────────────────────────────
+
+SUBCOMMANDS = {
+    "channels": cmd_channels,
+    "topic-sync": cmd_topic_sync,
+    "welcome": cmd_welcome,
+    "apply-full": cmd_apply_full,
+    "version": cmd_version,
+}
+
+
+def main() -> int:
+    if len(sys.argv) < 2:
+        print(__doc__.strip())
+        return 1
+    sub = sys.argv[1]
+    if sub in ("-h", "--help", "help"):
+        print(__doc__.strip())
+        return 0
+    fn = SUBCOMMANDS.get(sub)
+    if not fn:
+        die(f"unknown subcommand '{sub}' — try: {', '.join(SUBCOMMANDS)}", code=2)
+    return fn(sys.argv[2:])
+
+
+if __name__ == "__main__":
+    sys.exit(main())

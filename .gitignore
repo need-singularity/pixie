@@ -1,0 +1,21 @@
+# Pixie: no secrets committed.  All tokens live in need-singularity/secret.
+
+# Local audit log
+state/
+*.log
+
+# macOS
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Editor
+.vscode/
+.idea/
+
+# Backup files
+*.bak
+*.tmp
+*.swp
