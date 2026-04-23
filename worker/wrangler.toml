@@ -1,9 +1,24 @@
 name = "pixie"
 main = "src/index.js"
 compatibility_date = "2026-04-01"
+compatibility_flags = ["nodejs_compat"]
 account_id = "d4acc95862b4203c11948da5baf079bc"
 
-# Secrets (set via `wrangler secret put`, not committed):
+# Secrets (via `wrangler secret put`):
 #   DISCORD_PUBLIC_KEY     — Ed25519 verification
-#   DISCORD_APPLICATION_ID — public, fine in plain vars
-#   DISCORD_BOT_TOKEN      — reserved for future pin / edit features
+#   DISCORD_APPLICATION_ID
+#   DISCORD_BOT_TOKEN
+
+# Durable Object: holds the single Discord Gateway WebSocket.
+[[durable_objects.bindings]]
+name = "GATEWAY"
+class_name = "GatewayDO"
+
+# Cron: every 2 min wake the DO so it reconnects fast after CF routes
+# restart the isolate.  Also used to send a heartbeat if the WS dropped.
+[triggers]
+crons = ["*/2 * * * *"]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GatewayDO"]
