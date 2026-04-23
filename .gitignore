@@ -4,6 +4,11 @@
 state/
 *.log
 
+# Node / worker
+node_modules/
+.wrangler/
+.dev.vars
+
 # macOS
 .DS_Store
 
