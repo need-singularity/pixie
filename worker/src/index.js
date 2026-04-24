@@ -75,10 +75,10 @@ function handleCommand(interaction) {
   return eph(`unknown command: ${name}`);
 }
 
-async function wakeGateway(env) {
+async function wakeGateway(env, reset = false) {
   const id = env.GATEWAY.idFromName("singleton");
   const stub = env.GATEWAY.get(id);
-  const r = await stub.fetch("https://do/wake");
+  const r = await stub.fetch(`https://do/wake${reset ? "?reset=1" : ""}`);
   return r;
 }
 
@@ -87,8 +87,10 @@ export default {
     const url = new URL(request.url);
 
     // Manual wake endpoint for debugging.
+    // /wake?reset=1 clears circuit breaker + session for a fresh IDENTIFY.
     if (url.pathname === "/wake") {
-      const r = await wakeGateway(env);
+      const reset = url.searchParams.get("reset") === "1";
+      const r = await wakeGateway(env, reset);
       return new Response(await r.text(), { headers: r.headers });
     }
 
