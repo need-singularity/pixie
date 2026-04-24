@@ -152,17 +152,19 @@ export class GatewayDO {
 
   private async onMessageCreate(m: MessageCreate): Promise<void> {
     if (m.author?.bot) return;
-    if (!m.content || m.content.trim().length < 2) return;
     if (m.type !== 0) return;
 
-    const src = detectLang(m.content);
+    const text = m.content || m.message_snapshots?.[0]?.message?.content || "";
+    if (text.trim().length < 2) return;
+
+    const src = detectLang(text);
     const to = target(src);
     if (!to) return;
     const from = src as Lang;
 
     try {
       const out = await translate(
-        m.content,
+        text,
         from,
         to,
         this.env.ANTHROPIC_API_KEY,
@@ -188,13 +190,15 @@ export class GatewayDO {
 
     try {
       const msg = await getMessage(r.channel_id, r.message_id, this.env.DISCORD_BOT_TOKEN);
-      if (msg.author?.bot || !msg.content) return;
-      const src = detectLang(msg.content);
+      if (msg.author?.bot) return;
+      const text = msg.content || msg.message_snapshots?.[0]?.message?.content || "";
+      if (!text) return;
+      const src = detectLang(text);
       const from: Lang = src === "other" ? (to === "ko" ? "en" : "ko") : src;
       if (from === to) return;
 
       const out = await translate(
-        msg.content,
+        text,
         from,
         to,
         this.env.ANTHROPIC_API_KEY,
@@ -220,6 +224,7 @@ type MessageCreate = {
   content: string;
   type: number;
   author?: { bot?: boolean };
+  message_snapshots?: { message: { content: string } }[];
 };
 
 type ReactionAdd = {

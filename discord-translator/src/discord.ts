@@ -78,7 +78,15 @@ export async function getMessage(
   channelId: string,
   messageId: string,
   token: string,
-): Promise<{ content: string; author: { bot?: boolean } }> {
+): Promise<{
+  content: string;
+  author: { bot?: boolean };
+  message_snapshots?: { message: { content: string } }[];
+}> {
   const resp = await call(`/channels/${channelId}/messages/${messageId}`, token);
-  return (await resp.json()) as { content: string; author: { bot?: boolean } };
+  return (await resp.json()) as {
+    content: string;
+    author: { bot?: boolean };
+    message_snapshots?: { message: { content: string } }[];
+  };
 }
