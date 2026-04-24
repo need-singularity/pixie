@@ -1,0 +1,25 @@
+{
+  "name": "discord-translator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "./scripts/sync-dev-vars.sh",
+    "push-secrets": "./scripts/push-secrets.sh",
+    "cf": "./scripts/cf.sh",
+    "dev": "npm run sync && ./scripts/cf.sh dev",
+    "deploy": "./scripts/cf.sh deploy",
+    "register": "npm run sync && tsx src/register.ts",
+    "tail": "./scripts/cf.sh tail",
+    "whoami": "./scripts/cf.sh whoami"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260101.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "wrangler": "^3.90.0"
+  }
+}

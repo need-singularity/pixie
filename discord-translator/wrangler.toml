@@ -1,0 +1,26 @@
+name = "discord-translator"
+main = "src/index.ts"
+compatibility_date = "2026-01-15"
+compatibility_flags = ["nodejs_compat"]
+
+[[durable_objects.bindings]]
+name = "GATEWAY"
+class_name = "GatewayDO"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["GatewayDO"]
+
+[triggers]
+crons = ["*/1 * * * *"]
+
+[vars]
+AUTO_TRANSLATE = "true"
+THREAD_NAME = "translation"
+MODEL = "claude-haiku-4-5-20251001"
+
+# Secrets (set via: wrangler secret put <NAME>)
+#   DISCORD_PUBLIC_KEY
+#   DISCORD_APP_ID
+#   DISCORD_BOT_TOKEN
+#   ANTHROPIC_API_KEY
