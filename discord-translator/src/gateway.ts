@@ -56,20 +56,26 @@ export class GatewayDO {
       ? `${this.resumeUrl}/?v=10&encoding=json`
       : GATEWAY_URL;
 
+    console.log("connect start", { url });
     const resp = await fetch(url.replace(/^ws/, "http"), {
       headers: { Upgrade: "websocket" },
     });
     const ws = resp.webSocket;
     if (!ws) throw new Error("no webSocket on response");
     ws.accept();
+    console.log("connect ws accepted", { status: resp.status });
     this.ws = ws;
     this.lastAck = true;
 
     ws.addEventListener("message", (e) => {
       this.onMessage(typeof e.data === "string" ? e.data : "").catch(() => {});
     });
-    ws.addEventListener("close", () => {
+    ws.addEventListener("close", (e) => {
+      console.log("gateway WS close", { code: (e as CloseEvent).code, reason: (e as CloseEvent).reason });
       this.ws = undefined;
+    });
+    ws.addEventListener("error", (e) => {
+      console.log("gateway WS error", { error: String(e) });
     });
   }
 
@@ -82,6 +88,7 @@ export class GatewayDO {
       case 10: { // HELLO
         const hello = p.d as { heartbeat_interval: number };
         this.heartbeatMs = hello.heartbeat_interval;
+        console.log("gateway HELLO", { heartbeatMs: this.heartbeatMs, resuming: !!this.sessionId });
         await this.state.storage.setAlarm(Date.now() + Math.floor(this.heartbeatMs * Math.random()));
         if (this.sessionId && this.resumeUrl) this.sendResume();
         else this.sendIdentify();
@@ -136,6 +143,7 @@ export class GatewayDO {
       const r = d as { session_id: string; resume_gateway_url: string };
       this.sessionId = r.session_id;
       this.resumeUrl = r.resume_gateway_url;
+      console.log("gateway READY", { session_id: r.session_id });
       return;
     }
 
