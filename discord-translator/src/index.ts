@@ -18,13 +18,18 @@ const PING = 1;
 const APP_CMD = 2;
 const DEFERRED_EPHEMERAL = 1 << 6;
 
+type ResolvedMessage = {
+  content: string;
+  message_snapshots?: { message: { content: string } }[];
+};
+
 type Interaction = {
   type: number;
   data?: {
     name: string;
     type?: number;
     target_id?: string;
-    resolved?: { messages?: Record<string, { content: string }> };
+    resolved?: { messages?: Record<string, ResolvedMessage> };
     options?: { name: string; value: string }[];
   };
   token: string;
@@ -82,7 +87,9 @@ function extractText(itx: Interaction): string | null {
   const d = itx.data;
   if (!d) return null;
   if (d.type === 3 && d.target_id && d.resolved?.messages) {
-    return d.resolved.messages[d.target_id]?.content ?? null;
+    const msg = d.resolved.messages[d.target_id];
+    if (!msg) return null;
+    return msg.content || msg.message_snapshots?.[0]?.message?.content || null;
   }
   const text = d.options?.find((o) => o.name === "text")?.value;
   return text ?? null;
