@@ -1,3 +1,7 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Discord](https://img.shields.io/badge/discord-join-5865F2.svg?logo=discord&logoColor=white)](https://discord.gg/mYzqYr67R)
+[![Platform](https://img.shields.io/badge/platform-Cloudflare%20Workers-F38020.svg?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
+
 # Pixie ✨
 
 Channel secretary for the **need-singularity** Discord server. Keeps channel topics linked to their repos, welcomes new members, surfaces recent commits. Hand-run, not autonomous.
