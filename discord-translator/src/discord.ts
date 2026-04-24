@@ -25,7 +25,7 @@ export async function createThread(
 ): Promise<{ id: string }> {
   const resp = await call(`/channels/${channelId}/messages/${messageId}/threads`, token, {
     method: "POST",
-    body: JSON.stringify({ name: name.slice(0, 100), auto_archive_duration: 60 }),
+    body: JSON.stringify({ name: name.slice(0, 100), auto_archive_duration: 10080 }),
   });
   return (await resp.json()) as { id: string };
 }
