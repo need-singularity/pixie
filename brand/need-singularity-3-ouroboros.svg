@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640">
+  <rect width="1280" height="640" fill="#0a0a0f"/>
+
+  <g transform="translate(640 320)">
+    <circle cx="0" cy="0" r="200" fill="none" stroke="#e8e8ea" stroke-width="0.5" opacity="0.55" stroke-dasharray="1236 20" stroke-dashoffset="1226"/>
+
+    <g fill="#e8e8ea">
+      <circle cx="0" cy="-200" r="3.2"/>
+      <circle cx="190.21" cy="-61.80" r="3.2"/>
+      <circle cx="117.56" cy="161.80" r="3.2"/>
+      <circle cx="-117.56" cy="161.80" r="3.2"/>
+      <circle cx="-190.21" cy="-61.80" r="3.2"/>
+    </g>
+
+    <circle cx="0" cy="0" r="2.2" fill="#e8e8ea"/>
+  </g>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#e8e8ea" opacity="0.5" letter-spacing="1.2">
+    <text x="640" y="96" text-anchor="middle">anima</text>
+    <text x="849" y="253" text-anchor="start">nexus</text>
+    <text x="769" y="500" text-anchor="middle">n6</text>
+    <text x="511" y="500" text-anchor="middle">hexa-lang</text>
+    <text x="431" y="253" text-anchor="end">pixie</text>
+  </g>
+
+  <text x="640" y="610" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#e8e8ea" opacity="0.35" text-anchor="middle" letter-spacing="8">NEED — SINGULARITY</text>
+</svg>
