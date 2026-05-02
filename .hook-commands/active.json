@@ -1,0 +1,44 @@
+{
+  "stack": [
+    {
+      "command": "watch",
+      "seed": "<task-notification>\n<task-id>byzsh5qb4</task-id>\n<summary>Monitor event: Watchdispatcheventsintail-live</summary>\n<event>[Monitor timed out — re-arm if needed.]</event>\n</task-notification>"
+    },
+    {
+      "command": "go",
+      "seed": "ok !!!!"
+    },
+    {
+      "command": "watch",
+      "seed": "<task-notification>\n<task-id>b5uxi5t93</task-id>\n<summary>Monitor event: WatchforMESSAGE_CREATEandrelatedevents</summary>\n<event>[Monitor timed out — re-arm if needed.]</event>\n</task-notification>"
+    },
+    {
+      "command": "keep",
+      "seed": "<task-notification>\n<task-id>b0h142szo</task-id>\n<tool-use-id>toolu_01UBTxfr2ETUufnVFBo5kCGB</tool-use-id>\n<output-file>/private/tmp/claude-501/-Users-ghost-core-pixie/cd6b9cb6-97c5-415a-a7ba-eeaa237cc3ef/tasks/b0h142szo.output</output-file>\n<status>completed</status>\n<summary>Bac round command Waituntilalogentryappears completed (exit code 0)</summary>\n</task-notification>"
+    },
+    {
+      "command": "watch",
+      "seed": "<task-notification>\n<task-id>b2y1tr4aq</task-id>\n<summary>Monitor event: WatchgatewaylogforWS/dispatchevents</summary>\n<event>[Monitor timed out — re-arm if needed.]</event>\n</task-notification>"
+    },
+    {
+      "command": "watch",
+      "seed": "<task-notification>\n<task-id>b2y1tr4aq</task-id>\n<summary>Monitor event: WatchgatewaylogforWS/dispatchevents</summary>\n<event>exceptions: [],\nexceptions: [],</event>\n</task-notification>"
+    },
+    {
+      "command": "watch",
+      "seed": "<task-notification>\n<task-id>b2y1tr4aq</task-id>\n<summary>Monitor event: WatchgatewaylogforWS/dispatchevents</summary>\n<event>exceptions: [],</event>\n</task-notification>"
+    },
+    {
+      "command": "list",
+      "seed": "commit and push , and deploy · ctx: 확인한게 날아가는거지 아니야 원래있었어 근데 시간지나니 스레드 없다고 찍히는거 10080 7일"
+    },
+    {
+      "command": "list",
+      "seed": "│ 10080 │ 7일 · ctx: [Request interrupted by user] 확인한게 날아가는거지 아니야 원래있었어 근데 시간지나니 스레드 없다고 찍히는거"
+    },
+    {
+      "command": "list",
+      "seed": "확인한게 날아가는거지"
+    }
+  ]
+}
