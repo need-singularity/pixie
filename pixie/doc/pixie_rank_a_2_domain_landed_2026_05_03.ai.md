@@ -7,7 +7,7 @@ ssot:
   baseline_ai_native: (none yet — pixie has no .ai-native-readme-baseline)
 status: RANK_A_2_DOMAIN_LANDED
 predecessor:
-  doc: docs/pixie_self_mk2_tuning_landed_2026_05_02.ai.md
+  doc: pixie/doc/pixie_self_mk2_tuning_landed_2026_05_02.ai.md
   marker: state/markers/pixie_self_mk2_tuning_landed.marker
   status: AUDIT_LANDED_SPEC_ONLY
   candidate_count: 4 (rank A 2 + rank B 1 + rank C 1)
@@ -68,7 +68,7 @@ JSONL header 를 land. 각 file = 1 header + 3 required_conditions (mix met/part
 | .roadmap.<domain> 신규 file | 0 (spec-only) | 2 (pixie_cli + pixie_worker) |
 | candidate domain count | 4 (rank A/A/B/C) | 2 land + 2 deferred |
 | README.ai.md 신규 emit | 0 | 0 (raw 270 triplet 별도 cycle) |
-| handoff doc | docs/pixie_self_mk2_tuning_landed_2026_05_02.ai.md (16280 b) | docs/pixie_rank_a_2_domain_landed_2026_05_03.ai.md (this) |
+| handoff doc | pixie/doc/pixie_self_mk2_tuning_landed_2026_05_02.ai.md (16280 b) | pixie/doc/pixie_rank_a_2_domain_landed_2026_05_03.ai.md (this) |
 | marker | state/markers/pixie_self_mk2_tuning_landed.marker | state/markers/pixie_rank_a_2_domain_landed.marker |
 
 predecessor 의 §10 next-cycle action 1 (4 후보 중 land 할 도메인 선별 — rank A 2개 권장 baseline) +
@@ -82,7 +82,7 @@ action 2 (각 cond.N + verifier seam §5 선택지 중) 를 본 cycle 이 실행
 |---|---|---:|---:|---|
 | .roadmap.pixie_cli | jsonl_with_comments | 4555 | 3 | 86b4b17feb1e |
 | .roadmap.pixie_worker | jsonl_with_comments | 6093 | 3 | 5918c181eda0 |
-| docs/pixie_rank_a_2_domain_landed_2026_05_03.ai.md | doc | (set after write) | (set) | (set) |
+| pixie/doc/pixie_rank_a_2_domain_landed_2026_05_03.ai.md | doc | (set after write) | (set) | (set) |
 | state/markers/pixie_rank_a_2_domain_landed.marker | marker | (set after write) | (set) | (set) |
 
 각 .roadmap = `# header comment` 2 line + JSONL 1 line (header object 안에 conditions + blocker array
