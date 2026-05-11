@@ -26,7 +26,7 @@ How to engage
   • Read the repo · open an issue · discuss in #🧠-anima
   • Pixie ✨ only maintains structure; she can't answer Anima questions
 
-→ github.com/need-singularity/anima`,
+→ github.com/dancinlab/anima`,
 
   nexus: `🔭 NEXUS — Universal Discovery Engine
 
@@ -49,7 +49,7 @@ How to engage
   • Open an issue on the repo for specific lens questions
   • Strategy discussion happens in #🔭-nexus
 
-→ github.com/need-singularity/nexus`,
+→ github.com/dancinlab/nexus`,
 
   "n6-architecture": `🏗️ N6 — Architecture from the perfect number 6
 
@@ -69,7 +69,7 @@ Current status
   • Chip draft: in progress
   • OS / display layer: prototype stage
 
-→ github.com/need-singularity/n6-architecture`,
+→ github.com/dancinlab/n6-architecture`,
 
   "hexa-lang": `💎 HEXA-LANG — The Perfect Number Programming Language
 
@@ -87,25 +87,25 @@ Touch points for issues / PRs
   • Parser / codegen bugs → issue tagged [lang_gap]
   • Missing primitives → submit via proposal_inbox
 
-→ github.com/need-singularity/hexa-lang`,
+→ github.com/dancinlab/hexa-lang`,
 
   hive: `🐝 Hive — pi-mono fork · AI-agent swarm
 
 The idea
   Multiple cooperating agents in a single shared-memory cell; many cells
-  in parallel; all cells bridged to the need-singularity substrate.
+  in parallel; all cells bridged to the dancinlab substrate.
   Persistence is layered, not monolithic.
 
 Core components
   • Multi-cell parallel agents — each cell is a sandbox
   • Layered persistent memory — user / project / session / transient
-  • need-singularity bridges — connects cells to anima / nexus / airgenome
+  • dancinlab bridges — connects cells to anima / nexus / airgenome
 
 How to engage
   • Use cases and patterns discussed in #🐝-hive
   • Issues on the fork tracked upstream (pi-mono)
 
-→ github.com/need-singularity/hive`,
+→ github.com/dancinlab/hive`,
 
   void: `🕳️ Void — Ghostty fork · AI-native terminal
 
@@ -123,7 +123,7 @@ Status
   • Fork of Ghostty baseline · diverged 2026 Q1
   • Ready for internal use, not yet stable for external
 
-→ github.com/need-singularity/void`,
+→ github.com/dancinlab/void`,
 
   airgenome: `🧬 airgenome — OS genome scanner
 
@@ -137,13 +137,13 @@ Core components
   • Pattern accumulation — ring buffer, motif mining
   • Anomaly detection — DSL-spec scanners + health / self score
   • Meta-engine — blockers, trend, correlation, chronic tracking
-  • Pixie ✨ reuses the same need-singularity conventions this repo defines
+  • Pixie ✨ reuses the same dancinlab conventions this repo defines
 
 How to engage
   • Open an issue for a specific host-level symptom
   • \`ag_meta help\` for the CLI — 19+ subcommands
 
-→ github.com/need-singularity/airgenome`,
+→ github.com/dancinlab/airgenome`,
 
   campfire: `🔥 Campfire — off-work corner
 

@@ -18,7 +18,7 @@ const commands = [
   },
   {
     name: "explain",
-    description: "Explain a need-singularity project (ephemeral, only you see it).",
+    description: "Explain a dancinlab project (ephemeral, only you see it).",
     type: 1,
     options: [
       {

@@ -7,31 +7,31 @@
       "project": null
     },
     "🧠-anima": {
-      "topic": "🧠 Anima — Consciousness implementation\nPureField repulsion-field engine + 1030 laws + Φ ratchet\n→ github.com/need-singularity/anima",
+      "topic": "🧠 Anima — Consciousness implementation\nPureField repulsion-field engine + 1030 laws + Φ ratchet\n→ github.com/dancinlab/anima",
       "project": "anima"
     },
     "🔭-nexus": {
-      "topic": "🔭 NEXUS — Universal Discovery Engine\n216 lenses + OUROBOROS evolution + 5-phase singularity cycle\n→ github.com/need-singularity/nexus",
+      "topic": "🔭 NEXUS — Universal Discovery Engine\n216 lenses + OUROBOROS evolution + 5-phase singularity cycle\n→ github.com/dancinlab/nexus",
       "project": "nexus"
     },
-    "🏗️-n6-architecture": {
-      "topic": "🏗️ N6 — Architecture from perfect number 6\n225 AI techniques + chip design + crypto / OS / display\n→ github.com/need-singularity/n6-architecture",
-      "project": "n6-architecture"
+    "🏗️-CANON": {
+      "topic": "🏗️ N6 — Architecture from perfect number 6\n225 AI techniques + chip design + crypto / OS / display\n→ github.com/dancinlab/canon",
+      "project": "CANON"
     },
     "💎-hexa-lang": {
-      "topic": "💎 HEXA-LANG — The Perfect Number Programming Language\nworking compiler + REPL\n→ github.com/need-singularity/hexa-lang",
+      "topic": "💎 HEXA-LANG — The Perfect Number Programming Language\nworking compiler + REPL\n→ github.com/dancinlab/hexa-lang",
       "project": "hexa-lang"
     },
     "🐝-hive": {
-      "topic": "🐝 Hive — pi-mono fork\nAI-agent swarm: multi-cell parallel agents, layered persistent memory, need-singularity bridges\n→ github.com/need-singularity/hive",
+      "topic": "🐝 Hive — pi-mono fork\nAI-agent swarm: multi-cell parallel agents, layered persistent memory, dancinlab bridges\n→ github.com/dancinlab/hive",
       "project": "hive"
     },
     "🕳️-void": {
-      "topic": "🕳️ Void — Ghostty fork\nAI-native terminal: grid mode (N×M auto-layout), agent I/O alongside PTY, perf-first budget\n→ github.com/need-singularity/void",
+      "topic": "🕳️ Void — Ghostty fork\nAI-native terminal: grid mode (N×M auto-layout), agent I/O alongside PTY, perf-first budget\n→ github.com/dancinlab/void",
       "project": "void"
     },
     "🧬-airgenome": {
-      "topic": "🧬 airgenome — OS genome scanner\n6-axis hexagon projection of host vitals + pattern accumulation + anomaly detection\n→ github.com/need-singularity/airgenome",
+      "topic": "🧬 airgenome — OS genome scanner\n6-axis hexagon projection of host vitals + pattern accumulation + anomaly detection\n→ github.com/dancinlab/airgenome",
       "project": "airgenome"
     }
   }

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-pixie — channel secretary for need-singularity Discord.
+pixie — channel secretary for dancinlab Discord.
 
 Subcommands:
   channels         — list server channels + current topics
@@ -9,7 +9,7 @@ Subcommands:
   apply-full       — one-shot bootstrap (rename, create voice, set topics)
   version          — print version
 
-Credentials read from the `secret` project (need-singularity/secret):
+Credentials read from the `secret` project (dancinlab/secret):
   discord.pixie_bot_token
   discord.pixie_guild_id
   discord.pixie_channels_json
@@ -131,7 +131,7 @@ def cmd_welcome(args) -> int:
         die(f"could not open DM with {uid}: {dm}")
     body = {
         "content": (
-            "✨ Hello! I'm Pixie, the channel secretary for **need-singularity**.\n\n"
+            "✨ Hello! I'm Pixie, the channel secretary for **dancinlab**.\n\n"
             "Quick tour:\n"
             "• 🔥 **campfire** — off-topic daily life, no rules\n"
             "• Per-project channels: `#nexus`, `#anima`, `#n6-architecture`, "

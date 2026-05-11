@@ -4,7 +4,7 @@
 
 # Pixie ✨
 
-Channel secretary for the **need-singularity** Discord server. Keeps channel topics linked to their repos, welcomes new members, surfaces recent commits. Hand-run, not autonomous.
+Channel secretary for the **dancinlab** Discord server. Keeps channel topics linked to their repos, welcomes new members, surfaces recent commits. Hand-run, not autonomous.
 
 ## What it does
 
@@ -20,7 +20,7 @@ Channel secretary for the **need-singularity** Discord server. Keeps channel top
   🔥-campfire         — off-work hangout, no agenda
   🧠-anima            — Consciousness implementation
   🔭-nexus            — Universal Discovery Engine
-  🏗️-n6-architecture  — Architecture from perfect number 6
+  🏗️-CANON  — Architecture from perfect number 6
   💎-hexa-lang        — The Perfect Number Programming Language
   🐝-hive             — pi-mono fork · AI-agent swarm
   🕳️-void             — Ghostty fork · AI-native terminal
@@ -35,7 +35,7 @@ The order in the sidebar matches the key order of `config/topics.json`.
 
 ## Setup
 
-Pixie uses the **secret** project ([`need-singularity/secret`](https://github.com/need-singularity/secret)) for credentials. No tokens are stored in this repo.
+Pixie uses the **secret** project ([`dancinlab/secret`](https://github.com/dancinlab/secret)) for credentials. No tokens are stored in this repo.
 
 ```bash
 # One-time: after creating the Discord app and getting a bot token

@@ -97,7 +97,7 @@ mk1 narrative `.roadmap` (HEAD blob) 핵심:
   enforcement (idempotent), worker 는 Phase A/C public/MCP API 가 mk1 roadmap 의 actionable 부분.
 - **rank B** (pixie_translator) = 별도 sub-project (own README + own wrangler.toml + own deploy 경로).
   현재 LIVE 운영 중이므로 cond 화 가치는 높지만 pixie 본체 (channel secretary) 와는 sibling 관계.
-- **rank C** (pixie_brand) = 9 brand asset (need-singularity-* SVG/PNG). 단일 condition cluster 화 가능,
+- **rank C** (pixie_brand) = 9 brand asset (dancinlab-* SVG/PNG). 단일 condition cluster 화 가능,
   하지만 production gate 의미는 약함. raw 168 minimum-viable exempt 권장.
 
 ### §2.2 spec-only emit policy (사용자 lock-in 대기)
