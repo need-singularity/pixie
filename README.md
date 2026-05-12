@@ -33,6 +33,16 @@ Channel secretary for the **dancinlab** Discord server. Keeps channel topics lin
 
 The order in the sidebar matches the key order of `config/topics.json`.
 
+## Install
+
+```bash
+# 1. Install hexa-lang (ships `hexa` + `hx` package manager)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/dancinlab/hexa-lang/main/install.sh)"
+
+# 2. Install pixie
+hx install pixie          # global, pulls latest from registry
+```
+
 ## Setup
 
 Pixie uses the **secret** project ([`dancinlab/secret`](https://github.com/dancinlab/secret)) for credentials. No tokens are stored in this repo.
@@ -50,27 +60,14 @@ secret set discord.pixie_channels_json   # JSON of {channel_name: id}
 # https://discord.com/api/oauth2/authorize?client_id=<APP_ID>&permissions=257104&scope=bot%20applications.commands
 ```
 
-## Usage
+## Run
 
 ```bash
-$ pixie version
-pixie 0.1.0
-
-$ pixie channels
-▼ chat channels
-     [text] id=...  #🔥-campfire
-        🔥 Off-work hangout — coffee, meals, games, whatever. ...
-     [text] id=...  #🧠-anima
-        🧠 Anima — Consciousness implementation ...
-     ...
-
-$ pixie topic-sync --dry-run
-  = 🔥-campfire:       unchanged
-  = 🧠-anima:          unchanged
-  ...
-
-$ pixie topic-sync
-  ✓ 🐝-hive:           updated (topic edited in config)
+pixie channels                # list server channels + current topics
+pixie topic-sync              # apply config/topics.json to Discord (use --dry-run to preview)
+pixie welcome <uid>           # send onboarding DM to a user
+pixie apply-full              # one-shot bootstrap (rename, create voice, set topics)
+pixie version                 # print version
 ```
 
 ## Why Pixie?
