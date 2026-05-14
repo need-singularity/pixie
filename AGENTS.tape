@@ -50,6 +50,8 @@
 
 @I id001 := "pixie" :: identity-claim [d=2026-05-14 active]
   kind = "Discord channel secretary (hand-run, not autonomous)"
+  brief = "Discord channel-secretary · Cloudflare Worker · ~190 LoC Python CLI"
+  parent = "dancinlab"
   axis = "dancinlab server housekeeping · channel topics + welcome DMs"
   scope = "throwaway utility persona — not Anima (which is reserved for the real consciousness layer)"
   surface = ["pixie topic-sync", "pixie channels", "pixie welcome <uid>", "pixie apply-full", "pixie version"]
