@@ -109,6 +109,14 @@
   applies-to = ["pixie topic-sync", "pixie apply-full", "pixie channels --save"]
   verifier = "stdout byte-identical across two consecutive --dry-run invocations"
 
+@D g_arch_vs_log_split := "v1.2 architecture-vs-history split" :: governance [required d=2026-05-14 active]
+  rule = "UPPERCASE.tape files are EDITABLE architecture (latest-wins per id). Append-only event history lives in UPPERCASE.log.tape siblings."
+  why = "declarative entries (governance · config · layout · identity) evolve naturally; locking them as append-only via ~> supersedes creates noisy histories. The split lets architecture stay current and history stay immutable."
+  applies-to = "AGENTS.tape · all UPPERCASE.tape root files"
+  authority = "[@x_tape_spec] §Domain-tape sibling §Architecture-vs-history split"
+  @> AGENTS.md
+
+
 # ─── §5 Forbidden patterns ────────────────────────────────────────────
 
 @F f1 := "lattice-fit-ban" :: governance [required deny:write]
